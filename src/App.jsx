@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Cart from './Cart';
 import logo from './images/logo.svg'
 import cart from './images/icon-cart.svg'
 import avatar from './images/image-avatar.png'
@@ -16,6 +17,7 @@ function App() {
   const [quantity, setQuantity] = useState(0);
   const [sneakerPrice, setSneakerPrice] = useState(125);
   const [total, setTotal] = useState(0);
+  const [popup, setPopup] = useState(false);
 
   function decrement() {
     if(quantity <= 0) {
@@ -35,6 +37,15 @@ function App() {
 
   function cartItem() {
     setTotal(quantity)
+    setPopup(true)
+  }
+
+  function openClose() {
+    if(popup) {
+      setPopup(false)
+    } else {
+      setPopup(true)
+    }
   }
 
   return (
@@ -53,23 +64,10 @@ function App() {
           </ul>
         </nav>
         <div className='cart-avatar'>
-          <img className='cart-icon' src={cart} alt="shopping-cart" width={22} height={20} />
+          <img onClick={openClose} className='cart-icon' src={cart} alt="shopping-cart" width={22} height={20} />
           { total > 0 && <span>{total}</span>}
           <img className='avatar-icon' src={avatar} alt="avatar-icon" width={50} height={50} />
-          { total > 0  && <div className='cartItems'>
-            <h3>Cart</h3>
-            <div className='cart-item-container'>
-              <img src={image1Thumbnail} height={50} width={50} alt="" />
-              <div className='cart-item-description'>
-                <p>Fall Limited Edition Sneakers</p>
-                <p style={{display: 'inline'}}>$125.00 x {total}</p> <span style={{display: 'inline'}}>${total * sneakerPrice}.00</span>
-              </div>
-              <img src={remove} alt="" />
-            </div>
-            <div className='btn'>
-              <button>Checkout</button>
-            </div>
-          </div> }
+          <Cart popup={popup} total={total} sneakerPrice={sneakerPrice} />
         </div>
       </header>
       <section className='product-container'>
