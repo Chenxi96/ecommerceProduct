@@ -23,8 +23,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 0;
   border-bottom: 1px solid hsl(220, 14%, 75%);
+  height: 120px;
 }
 
 .logo-container {
@@ -33,9 +33,34 @@ header {
 
 .cart-avatar {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   flex-basis: 10%;
+}
+
+.cart-avatar > img {
+  cursor: pointer;
+}
+
+.cart-avatar > span {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 13px;
+  padding: 0 8px;
+  background-color: $Orange;
+  color: hsl(0, 0%, 100%);
+  border-radius: 10px;
+}
+
+.avatar-icon:hover {
+  border: 2px solid $Orange;
+  border-radius: 100%;
+}
+
+.cart-icon:hover {
+  filter: brightness(0%);
 }
 
 nav {
@@ -49,8 +74,66 @@ ul {
 }
 
 li {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   color: hsl(219, 9%, 45%);
+  width: 63px;
+  height: 120px;
 }
+
+li:hover {
+  border-bottom: 5px solid $Orange;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.cartItems {
+  position: absolute;
+  left: -215px;
+  bottom: -250px;
+  width: 24rem;
+  height: 15rem;
+  background-color: white;
+  box-shadow: 0px 10px 15px hsla(0, 0%, 0%, 0.2);
+  border-radius: 10px;
+}
+
+.cartItems > h3 {
+  font-weight: 700;
+  padding: 20px 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: black;
+  border-bottom: 1px solid hwb(220 71% 22%);
+}
+
+.cartItems > .btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cartItems button  {
+  width: 80%;
+  height: 60px;
+  color: white;
+  background-color: $Orange;
+  border-radius: 10px;
+}
+
+.cart-item-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-block: 20px;
+}
+
+.cart-item-description > p {
+  margin: 0;
+}
+
+
 
 // main section
 
@@ -91,6 +174,10 @@ section.product-container {
 .image-gallery > img {
   width: 20%;
   border-radius: 20px;
+}
+
+.image-gallery > img:hover {
+  cursor: pointer;
 }
 
 
@@ -167,6 +254,10 @@ h1 {
   border-radius: 10px;
   color: hsl(0, 0%, 100%);
   font-size: 22px;
+}
+
+.add-cart:hover {
+  background-color: hsl(25, 100%, 94%);
 }
 
 // footer

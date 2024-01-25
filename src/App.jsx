@@ -4,6 +4,7 @@ import cart from './images/icon-cart.svg'
 import avatar from './images/image-avatar.png'
 import plus from './images/icon-plus.svg'
 import minus from './images/icon-minus.svg'
+import remove from './images/icon-delete.svg'
 import image1 from './images/image-product-1.jpg'
 import image1Thumbnail from './images/image-product-1-thumbnail.jpg'
 import image2Thumbnail from './images/image-product-2-thumbnail.jpg'
@@ -12,6 +13,29 @@ import image4Thumbnail from './images/image-product-4-thumbnail.jpg'
 import './App.scss'
 
 function App() {
+  const [quantity, setQuantity] = useState(0);
+  const [sneakerPrice, setSneakerPrice] = useState(125);
+  const [total, setTotal] = useState(0);
+
+  function decrement() {
+    if(quantity <= 0) {
+      setQuantity(0)
+    } else {
+      setQuantity(quantity - 1)
+    }
+  }
+
+  function increment() {
+    if(quantity >= 10) {
+      setQuantity(quantity)
+    } else {
+      setQuantity(quantity + 1)
+    }
+  }
+
+  function cartItem() {
+    setTotal(quantity)
+  }
 
   return (
     <>
@@ -29,8 +53,23 @@ function App() {
           </ul>
         </nav>
         <div className='cart-avatar'>
-          <img src={cart} alt="shopping-cart" width={22} height={20} />
-          <img src={avatar} alt="avatar-icon" width={50} height={50} />
+          <img className='cart-icon' src={cart} alt="shopping-cart" width={22} height={20} />
+          { total > 0 && <span>{total}</span>}
+          <img className='avatar-icon' src={avatar} alt="avatar-icon" width={50} height={50} />
+          { total > 0  && <div className='cartItems'>
+            <h3>Cart</h3>
+            <div className='cart-item-container'>
+              <img src={image1Thumbnail} height={50} width={50} alt="" />
+              <div className='cart-item-description'>
+                <p>Fall Limited Edition Sneakers</p>
+                <p style={{display: 'inline'}}>$125.00 x {total}</p> <span style={{display: 'inline'}}>${total * sneakerPrice}.00</span>
+              </div>
+              <img src={remove} alt="" />
+            </div>
+            <div className='btn'>
+              <button>Checkout</button>
+            </div>
+          </div> }
         </div>
       </header>
       <section className='product-container'>
@@ -57,15 +96,15 @@ function App() {
           <p className='saving-price'>$250.00</p>
           <div className='quantity-cart'>
             <div className='quantity'>
-              <button className='minus'>
+              <button onClick={decrement} className='minus'>
                 <img src={minus} alt="minus-icon" />
               </button>
-              <p className='amount'>0</p>
-              <button className='plus'>
+              <p className='amount'>{quantity}</p>
+              <button onClick={increment} className='plus'>
                 <img src={plus} alt="plus-icon" />
               </button>
             </div>
-            <button className='add-cart'>
+            <button onClick={cartItem} className='add-cart'>
               <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" fill="#ffffff" fill-rule="nonzero"/></svg>
               <p>Add to cart</p>
             </button>
