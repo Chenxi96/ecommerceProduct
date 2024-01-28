@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import Cart from './Cart';
+import Gallery from './Gallery';
 import logo from './images/logo.svg'
 import cart from './images/icon-cart.svg'
 import avatar from './images/image-avatar.png'
 import plus from './images/icon-plus.svg'
 import minus from './images/icon-minus.svg'
-import remove from './images/icon-delete.svg'
 import image1 from './images/image-product-1.jpg'
 import image1Thumbnail from './images/image-product-1-thumbnail.jpg'
 import image2Thumbnail from './images/image-product-2-thumbnail.jpg'
@@ -18,6 +18,7 @@ function App() {
   const [sneakerPrice, setSneakerPrice] = useState(125);
   const [total, setTotal] = useState(0);
   const [popup, setPopup] = useState(false);
+  const [cartItems, setCartItems] = useState(false)
 
   function decrement() {
     if(quantity <= 0) {
@@ -37,10 +38,18 @@ function App() {
 
   function cartItem() {
     setTotal(quantity)
-    setPopup(true)
+    setCartItems(true)
   }
 
   function openClose() {
+    if(cartItems) {
+      setCartItems(false)
+    } else {
+      setCartItems(true)
+    }
+  }
+
+  function openPopup() {
     if(popup) {
       setPopup(false)
     } else {
@@ -67,17 +76,17 @@ function App() {
           <img onClick={openClose} className='cart-icon' src={cart} alt="shopping-cart" width={22} height={20} />
           { total > 0 && <span>{total}</span>}
           <img className='avatar-icon' src={avatar} alt="avatar-icon" width={50} height={50} />
-          <Cart popup={popup} total={total} sneakerPrice={sneakerPrice} />
+          <Cart cartItems={cartItems} total={total} sneakerPrice={sneakerPrice} />
         </div>
       </header>
       <section className='product-container'>
         <div className='product-images'>
           <img className='mainImg' src={image1} alt="" />
           <div className='image-gallery'>
-            <img src={image1Thumbnail} alt="" />
-            <img src={image2Thumbnail} alt="" />
-            <img src={image3Thumbnail} alt="" />
-            <img src={image4Thumbnail} alt="" />
+            <img onClick={openPopup} src={image1Thumbnail} alt="" />
+            <img onClick={openPopup} src={image2Thumbnail} alt="" />
+            <img onClick={openPopup} src={image3Thumbnail} alt="" />
+            <img onClick={openPopup} src={image4Thumbnail} alt="" />
           </div>
         </div>
         <div className='product-description'>
@@ -109,6 +118,7 @@ function App() {
           </div>
         </div>
       </section>
+      {popup && <Gallery popup={popup} setPopup={setPopup} openPopup={openPopup} />}
     </>
   )
 }

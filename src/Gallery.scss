@@ -1,0 +1,102 @@
+figure {
+    position: fixed;
+    margin-top: 0;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, 0.7); 
+    margin-inline: auto;
+}
+
+figure > div {
+    margin-inline: auto;
+}
+
+.close-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 35%;
+    margin-top: 6.2rem;
+    margin-bottom: 20px;
+}
+
+.close-wrapper path {
+    fill: white;
+}
+
+.close-wrapper path:hover {
+    fill: hsl(26, 100%, 55%);
+}
+
+.next path:hover, .previous path:hover {
+    stroke: hsl(26, 100%, 55%);
+}
+
+.imageGallery {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 25%;
+    margin-block: 20px;
+}
+
+.imageGallery > div {
+    width: 25%;
+    background-color: white;
+    border-radius: 15px;
+}
+
+
+
+.imageGallery > div:hover {
+    border: 2px solid hsl(26, 100%, 55%);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.image:hover {
+    opacity: 50%;
+}
+
+.lightBox-imageContainer {
+    position: relative;
+    width: 35%;
+}
+
+.lightBox-imageContainer .mainImage {
+    object-fit: cover;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    left: -25px;
+    background-color: white;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+}
+
+.previous {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 40%;
+    right: -25px;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border-radius: 100%;
+}

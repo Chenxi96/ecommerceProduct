@@ -105,7 +105,7 @@ li:hover {
   font-size: 15px;
   font-weight: 700;
   color: black;
-  border-bottom: 1px solid hwb(220 71% 22%);
+  border-bottom: 1px solid hsl(220 71% 22%);
 }
 
 .cartItems > .btn {
@@ -148,7 +148,7 @@ section.product-container {
 .product-description {
   width: 80%;
   margin-inline: auto;
-  padding: 150px 0;
+  padding: 12rem 0;
 }
 
 // image container
@@ -177,10 +177,12 @@ section.product-container {
 .image-gallery > img {
   width: 20%;
   border-radius: 20px;
+  transition: opacity 0.5s;
 }
 
 .image-gallery > img:hover {
   cursor: pointer;
+  opacity: 50%;
 }
 
 

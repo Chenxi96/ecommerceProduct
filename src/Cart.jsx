@@ -7,8 +7,8 @@ import image3Thumbnail from './images/image-product-3-thumbnail.jpg'
 import image4Thumbnail from './images/image-product-4-thumbnail.jpg'
 import './App.scss'
 
-export default function Cart({total, sneakerPrice, popup}) {
-    if(popup) {
+export default function Cart({total, sneakerPrice, cartItems}) {
+    if(cartItems) {
         if(total > 0) {
             return (
                 <>
