@@ -19,6 +19,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [popup, setPopup] = useState(false);
   const [cartItems, setCartItems] = useState(false)
+  const [indication, setIndication] = useState(1)
 
   function decrement() {
     if(quantity <= 0) {
@@ -57,6 +58,8 @@ function App() {
     }
   }
 
+
+
   return (
     <>
       <header>
@@ -83,10 +86,10 @@ function App() {
         <div className='product-images'>
           <img className='mainImg' src={image1} alt="" />
           <div className='image-gallery'>
-            <img onClick={openPopup} src={image1Thumbnail} alt="" />
-            <img onClick={openPopup} src={image2Thumbnail} alt="" />
-            <img onClick={openPopup} src={image3Thumbnail} alt="" />
-            <img onClick={openPopup} src={image4Thumbnail} alt="" />
+            <img className={indication === 1 ? 'indication': null} onClick={() => setIndication(1)} onDoubleClick={openPopup} src={image1Thumbnail} alt="" />
+            <img className={indication === 2 ? 'indication': null} onClick={() => setIndication(2)}  onDoubleClick={openPopup} src={image2Thumbnail} alt="" />
+            <img className={indication === 3 ? 'indication': null} onClick={() => setIndication(3)}  src={image3Thumbnail} alt="" />
+            <img className={indication === 4 ? 'indication': null} onClick={() => setIndication(4)}  src={image4Thumbnail} alt="" />
           </div>
         </div>
         <div className='product-description'>

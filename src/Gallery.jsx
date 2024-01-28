@@ -9,21 +9,31 @@ import './Gallery.scss'
 
 export default function Gallery({popup, setPopup, openPopup}) {
     let [slide, setSlide] = useState(1)
+    let [selected, setSelected] = useState(1)
 
-    function nextSlide() {
+    function previousSlide() {
         if(slide >= 4) {
             setSlide(1)
+            setSelected(1)
         } else {
             setSlide(slide + 1)
+            setSelected(slide + 1)
         }
     }
 
-    function previousSlide() {
+    function nextSlide() {
         if(slide <= 1) {
             setSlide(4)
+            setSelected(4)
         } else {
             setSlide(slide - 1)
+            setSelected(slide -1)
         }
+    }
+
+    function border(n) {
+        setSlide(n)
+        setSelected(n)
     }
 
     return (
@@ -42,16 +52,16 @@ export default function Gallery({popup, setPopup, openPopup}) {
                         </div>
                     </div>
                     <div className='imageGallery'>
-                        <div>
+                        <div onClick={() => border(1)} className={selected === 1 ? 'border' : null} >
                         <img className="image" src={image1Thumbnail} alt="" />
                         </div>
-                        <div>
+                        <div onClick={() => border(2)} className={selected === 2 ? 'border' : null}>
                         <img className="image" src={image2Thumbnail} alt="" />
                         </div>
-                        <div>
+                        <div onClick={() => border(3)} className={selected === 3 ? 'border' : null}>
                         <img className="image" src={image3Thumbnail} alt="" />
                         </div>
-                        <div>
+                        <div onClick={() => border(4)} className={selected === 4 ? 'border' : null}>
                         <img className="image" src={image4Thumbnail} alt="" />
                         </div>
                     </div>

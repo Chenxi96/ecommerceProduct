@@ -47,10 +47,12 @@ figure > div {
     border-radius: 15px;
 }
 
-
-
-.imageGallery > div:hover {
+.border {
     border: 2px solid hsl(26, 100%, 55%);
+}
+
+.border > img {
+    opacity: 50%;
 }
 
 .image {

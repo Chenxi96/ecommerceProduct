@@ -180,6 +180,11 @@ section.product-container {
   transition: opacity 0.5s;
 }
 
+.indication {
+  border: 2px solid hsl(26, 100%, 55%);
+  opacity: 50%;
+}
+
 .image-gallery > img:hover {
   cursor: pointer;
   opacity: 50%;
