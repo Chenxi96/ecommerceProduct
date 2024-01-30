@@ -2,12 +2,9 @@ import React from "react";
 import remove from './images/icon-delete.svg'
 import image1 from './images/image-product-1.jpg'
 import image1Thumbnail from './images/image-product-1-thumbnail.jpg'
-import image2Thumbnail from './images/image-product-2-thumbnail.jpg'
-import image3Thumbnail from './images/image-product-3-thumbnail.jpg'
-import image4Thumbnail from './images/image-product-4-thumbnail.jpg'
 import './App.scss'
 
-export default function Cart({total, sneakerPrice, cartItems}) {
+export default function Cart({total, sneakerPrice, cartItems, setTotal}) {
     if(cartItems) {
         if(total > 0) {
             return (
@@ -20,7 +17,7 @@ export default function Cart({total, sneakerPrice, cartItems}) {
                         <p>Fall Limited Edition Sneakers</p>
                         <p style={{display: 'inline'}}>$125.00 x {total}</p> <span style={{display: 'inline'}}>${total * sneakerPrice}.00</span>
                     </div>
-                    <img className="deleteBtn" src={remove} alt="" />
+                    <img onClick={() => setTotal(0)} className="deleteBtn" src={remove} alt="" />
                     </div>
                     <div className='btn'>
                     <button>Checkout</button>

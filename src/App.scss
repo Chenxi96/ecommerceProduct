@@ -27,6 +27,10 @@ header {
   height: 120px;
 }
 
+.menu {
+  display: none;
+}
+
 .logo-container {
   flex-basis: 30%;
 }
@@ -68,7 +72,7 @@ nav {
   align-self: center;
 }
 
-ul {
+.webMenu {
   display: flex;
   gap: 20px;
 }
@@ -174,6 +178,10 @@ section.product-container {
   gap: 27px;
 }
 
+.previousPic, .nextPic {
+  display: none;
+}
+
 .image-gallery > img {
   width: 20%;
   border-radius: 20px;
@@ -242,6 +250,17 @@ h1 {
   border-radius: 15px 0 0 15px;
 }
 
+.sale {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(25, 100%, 94%);
+  color: hsl(26, 100%, 55%);
+  padding-inline: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
 .price-container {
   display: flex;
   gap: 10px;
@@ -252,6 +271,7 @@ h1 {
 
 .price-container > p {
   margin-bottom: 0;
+  font-weight: 700;
 }
 
 .add-cart {
@@ -274,4 +294,179 @@ h1 {
 footer {
   width: auto;
   margin-inline: auto;
+}
+
+@media screen and (max-width: 375px) {
+  main {
+    margin: 0;
+    width: 100vw;
+  }
+
+  .webMenu {
+    display: none;
+  }
+
+  .mobile-container {
+    z-index: 1;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: hsla(0, 0%, 0%, 0.7);
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .mobileMenu {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: 100vh;
+    width: 70vw;
+    left: 0px;
+    top: 0px;
+    background-color: white;
+    padding-left: 15px;
+    padding-top: 20px;
+    font-weight: 700;
+  }
+
+  li {
+    display: block;
+    color: black;
+    height: 50px;
+  }
+
+  li:hover {
+    border-bottom: none;
+  }
+
+  header {
+    display: flex;
+    padding-inline: 20px;
+    border: none;
+    height: 70px;
+  }
+
+  .cartItems {
+    z-index: 1;
+    position: absolute;
+    width: 22rem;
+    left: -285px;
+    top: 55px;
+  }
+
+  .logoContainer {
+    display: flex;
+    gap: 10px;
+  }
+
+  .cart-avatar {
+    display: flex;
+    gap: 10px;
+    position: relative;
+  }
+
+  .avatar-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .menu {
+    display: inline;
+  }
+
+  section.product-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-gallery {
+    display: none;
+  }
+
+  .product-images {
+    margin: 0;
+    width: 100%;
+    height: 34vh;
+    position: relative;
+  }
+
+  .nextPic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    top: 45%;
+    left: 25px;
+    background-color: white;
+  }
+
+  .previousPic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: white;
+    right: 25px;
+    top: 45%;
+  }
+
+  .mainImg {
+    border-radius: 0;
+    object-fit: cover;
+    height: 100%;
+    object-position: 0px -37px;
+  }
+
+  .product-description {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+  }
+
+  .price-container {
+    margin-bottom: 20px;
+  }
+
+  .quantity-cart {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .saving-amount {
+    flex-basis: 50%;
+    text-align: right;
+    text-decoration: line-through;
+    font-size: 16px;
+    color: hsl(219, 9%, 45%);
+  }
+
+  .saving-price {
+    display: none;
+  }
+
+  .plus, .minus, .amount {
+    flex-basis: 33%;
+    padding-block: 20px;
+  }
+
+  .amount {
+    color: black;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .add-cart {
+    width: 100%;
+  }
 }

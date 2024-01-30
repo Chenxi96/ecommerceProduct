@@ -4,6 +4,8 @@ import Gallery from './Gallery';
 import logo from './images/logo.svg'
 import cart from './images/icon-cart.svg'
 import avatar from './images/image-avatar.png'
+import remove from './images/icon-close.svg'
+import menu from './images/icon-menu.svg'
 import plus from './images/icon-plus.svg'
 import minus from './images/icon-minus.svg'
 import image1 from './images/image-product-1.jpg'
@@ -20,6 +22,7 @@ function App() {
   const [popup, setPopup] = useState(false);
   const [cartItems, setCartItems] = useState(false)
   const [indication, setIndication] = useState(1)
+  const [mobileMenu, setMobileMenu] = useState(false)
 
   function decrement() {
     if(quantity <= 0) {
@@ -58,16 +61,23 @@ function App() {
     }
   }
 
-
+  function mobileMenuPopup()  {
+    if(mobileMenu) {
+      setMobileMenu(false)
+    } else {
+      setMobileMenu(true)
+    }
+  }
 
   return (
     <>
       <header>
         <div className='logoContainer'>
+          <img onClick={mobileMenuPopup} className='menu' src={menu} alt="" />
           <img src={logo} alt="ecommerce-logo" />
         </div>
         <nav>
-          <ul>
+          <ul className='webMenu'>
             <li>Collections</li>
             <li>Men</li>
             <li>Women</li>
@@ -75,21 +85,41 @@ function App() {
             <li>Contact</li>
           </ul>
         </nav>
+        {mobileMenu &&
+          <div className='mobile-container'>
+            <ul className='mobileMenu'>
+              <li onClick={mobileMenuPopup}>
+                <img src={remove} alt="" />
+              </li>
+              <li>Collections</li>
+              <li>Men</li>
+              <li>Women</li>
+              <li>About</li>
+              <li>Contact</li>
+            </ul>
+          </div>
+           }
         <div className='cart-avatar'>
           <img onClick={openClose} className='cart-icon' src={cart} alt="shopping-cart" width={22} height={20} />
           { total > 0 && <span>{total}</span>}
           <img className='avatar-icon' src={avatar} alt="avatar-icon" width={50} height={50} />
-          <Cart cartItems={cartItems} total={total} sneakerPrice={sneakerPrice} />
+          <Cart setTotal={setTotal} cartItems={cartItems} total={total} sneakerPrice={sneakerPrice} />
         </div>
       </header>
       <section className='product-container'>
         <div className='product-images'>
+          <div className='previousPic'>
+            <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
+          </div>
           <img className='mainImg' src={image1} alt="" />
+          <div className='nextPic'>
+            <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
+          </div>
           <div className='image-gallery'>
             <img className={indication === 1 ? 'indication': null} onClick={() => setIndication(1)} onDoubleClick={openPopup} src={image1Thumbnail} alt="" />
-            <img className={indication === 2 ? 'indication': null} onClick={() => setIndication(2)}  onDoubleClick={openPopup} src={image2Thumbnail} alt="" />
-            <img className={indication === 3 ? 'indication': null} onClick={() => setIndication(3)}  src={image3Thumbnail} alt="" />
-            <img className={indication === 4 ? 'indication': null} onClick={() => setIndication(4)}  src={image4Thumbnail} alt="" />
+            <img className={indication === 2 ? 'indication': null} onClick={() => setIndication(2)} onDoubleClick={openPopup} src={image2Thumbnail} alt="" />
+            <img className={indication === 3 ? 'indication': null} onClick={() => setIndication(3)} onDoubleClick={openPopup} src={image3Thumbnail} alt="" />
+            <img className={indication === 4 ? 'indication': null} onClick={() => setIndication(4)} onDoubleClick={openPopup} src={image4Thumbnail} alt="" />
           </div>
         </div>
         <div className='product-description'>
@@ -101,7 +131,8 @@ function App() {
           </p>
           <div className='price-container'>
             <p>$125.00</p>
-            <p>50%</p>
+            <p className='sale'>50%</p>
+            <p className='saving-amount'>$250.00</p>
           </div>
           <p className='saving-price'>$250.00</p>
           <div className='quantity-cart'>
